@@ -38,7 +38,7 @@ public class Login extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,7 +79,7 @@ public class Login extends javax.swing.JFrame {
             Navegacao nav = new Navegacao();
             nav.setVisible(true);
             Login login = new Login();
-            login.setVisible(false);
+            login.dispose();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Credenciais inválidas!");
         }
