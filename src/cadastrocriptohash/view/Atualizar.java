@@ -5,6 +5,7 @@
  */
 package cadastrocriptohash.view;
 
+import cadastrocriptohash.model.BuscaCep;
 import cadastrocriptohash.model.PessoaEntity;
 import cadastrocriptohash.repository.PessoaRep;
 import java.util.ArrayList;
@@ -59,6 +60,7 @@ public class Atualizar extends javax.swing.JFrame {
         txtCPF = new javax.swing.JFormattedTextField();
         txtCEP = new javax.swing.JFormattedTextField();
         txtRG = new javax.swing.JFormattedTextField();
+        btnPesquisarCep = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -164,6 +166,14 @@ public class Atualizar extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         jPanel1.add(txtRG, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 77, 107, -1));
+
+        btnPesquisarCep.setText(".");
+        btnPesquisarCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarCepActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPesquisarCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 20, 20));
 
         txtId.setEditable(false);
         txtId.setText("id");
@@ -314,6 +324,16 @@ public class Atualizar extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
+    private void btnPesquisarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarCepActionPerformed
+        BuscaCep busca = new BuscaCep();
+        busca.buscarCep(txtCEP.getText());
+        txtEndereco.setText(busca.getLogradouro());
+        txtBairro.setText(busca.getBairro());
+        txtMunicipio.setText(busca.getCidade());
+        txtUF.setText(busca.getUf());
+        
+    }//GEN-LAST:event_btnPesquisarCepActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -355,6 +375,7 @@ public class Atualizar extends javax.swing.JFrame {
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnPesquisaCpf;
     private javax.swing.JButton btnPesquisaNome;
+    private javax.swing.JButton btnPesquisarCep;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

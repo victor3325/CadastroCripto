@@ -5,6 +5,7 @@
  */
 package cadastrocriptohash.view;
 
+import cadastrocriptohash.model.BuscaCep;
 import cadastrocriptohash.model.PessoaEntity;
 import cadastrocriptohash.repository.PessoaRep;
 import java.util.ArrayList;
@@ -142,14 +143,29 @@ public class Deletar extends javax.swing.JFrame {
 
         jLabel8.setText("Município");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 254, -1, -1));
+
+        txtNome.setEditable(false);
         jPanel1.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 19, 107, -1));
+
+        txtEndereco.setEditable(false);
         jPanel1.add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 135, 107, -1));
+
+        txtNumero.setEditable(false);
         jPanel1.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 164, 107, -1));
+
+        txtBairro.setEditable(false);
         jPanel1.add(txtBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 193, 107, -1));
+
+        txtComplemento.setEditable(false);
         jPanel1.add(txtComplemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 222, 107, -1));
+
+        txtMunicipio.setEditable(false);
         jPanel1.add(txtMunicipio, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 251, 107, -1));
+
+        txtUF.setEditable(false);
         jPanel1.add(txtUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 280, 107, -1));
 
+        txtCPF.setEditable(false);
         try {
             txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -158,6 +174,7 @@ public class Deletar extends javax.swing.JFrame {
         txtCPF.setText("");
         jPanel1.add(txtCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 48, 107, -1));
 
+        txtCEP.setEditable(false);
         try {
             txtCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
@@ -165,6 +182,7 @@ public class Deletar extends javax.swing.JFrame {
         }
         jPanel1.add(txtCEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 106, 107, -1));
 
+        txtRG.setEditable(false);
         try {
             txtRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
         } catch (java.text.ParseException ex) {
@@ -315,18 +333,18 @@ public class Deletar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtBairro;
+    public javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCEP;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtComplemento;
-    private javax.swing.JTextField txtEndereco;
+    public javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtMunicipio;
+    public javax.swing.JTextField txtMunicipio;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JFormattedTextField txtPesquisaCPF;
     private javax.swing.JTextField txtPesquisaNome;
     private javax.swing.JFormattedTextField txtRG;
-    private javax.swing.JTextField txtUF;
+    public javax.swing.JTextField txtUF;
     // End of variables declaration//GEN-END:variables
 }
