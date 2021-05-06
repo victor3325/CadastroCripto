@@ -20,6 +20,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        
     }
 
     /**
@@ -38,7 +39,7 @@ public class Login extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -69,7 +70,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-         
+        
         UsuarioRep usurep = new UsuarioRep();
                 
         UsuarioEntity usuario = usurep.checarLogin(txtLogin.getText(), txtSenha.getText());
@@ -78,11 +79,11 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Login Efetuado");
             Navegacao nav = new Navegacao();
             nav.setVisible(true);
-            Login login = new Login();
-            login.dispose();
+            dispose();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Credenciais inválidas!");
         }
+        
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**

@@ -6,6 +6,7 @@
 package cadastrocriptohash;
 
 import cadastrocriptohash.view.Login;
+import cadastrocriptohash.view.Navegacao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -23,8 +24,8 @@ public class InicioApp {
                  = Persistence.createEntityManagerFactory("CadastroCriptoPU");
         static  EntityManager em = emf.createEntityManager();
     public static void main(String[] args) {
-        Login login = new Login();
-        login.setVisible(true);
+        new Login().setVisible(true);
+        
     }    
     
 }

@@ -16,6 +16,7 @@ public class Navegacao extends javax.swing.JFrame {
      */
     public Navegacao() {
         initComponents();
+        
     }
 
     /**
@@ -146,6 +147,7 @@ public class Navegacao extends javax.swing.JFrame {
         nav.dispose();
         Login login = new Login();
         login.setVisible(true);
+        dispose();
     }//GEN-LAST:event_menuDeslogarActionPerformed
 
     private void menuListaUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListaUActionPerformed
@@ -209,6 +211,7 @@ public class Navegacao extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Navegacao().setVisible(true);
+                
             }
         });
     }
