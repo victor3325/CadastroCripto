@@ -141,8 +141,15 @@ public class BuscarPorNome extends javax.swing.JFrame {
         return lista;
     }
     private void addTabela(){
-        DefaultTableModel model = (DefaultTableModel) tblPessoa.getModel();
-
+        DefaultTableModel model = new DefaultTableModel()
+	{
+		@Override
+		public boolean isCellEditable(final int row, final int column) {
+			return false;
+		}
+                
+	};
+        tblPessoa.setModel(model);
             model.addColumn("Nome");
             model.addColumn("Cpf");
             model.addColumn("Rg");

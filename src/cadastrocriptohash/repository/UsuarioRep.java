@@ -105,8 +105,8 @@ public class UsuarioRep extends UsuarioEntity{
 
     }
 
-    public java.util.List<UsuarioEntity> listar() {
-        java.util.List<UsuarioEntity> usuarios = new ArrayList<>();
+    public ArrayList<UsuarioEntity> listar() {
+        ArrayList<UsuarioEntity> usuarios = new ArrayList<>();
         ResultSet res;
         
         try {

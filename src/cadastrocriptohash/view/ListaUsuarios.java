@@ -5,7 +5,11 @@
  */
 package cadastrocriptohash.view;
 
+
+import cadastrocriptohash.model.UsuarioEntity;
 import cadastrocriptohash.repository.UsuarioRep;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +22,8 @@ public class ListaUsuarios extends javax.swing.JFrame {
      */
     public ListaUsuarios() {
         initComponents();
+        addTabela();
+        
     }
 
     /**
@@ -33,6 +39,8 @@ public class ListaUsuarios extends javax.swing.JFrame {
         CadastroCriptoPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("CadastroCriptoPU").createEntityManager();
         usuarioEntityQuery = java.beans.Beans.isDesignTime() ? null : CadastroCriptoPUEntityManager.createQuery("SELECT u FROM UsuarioEntity u");
         usuarioEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : usuarioEntityQuery.getResultList();
+        usuarioEntityQuery1 = java.beans.Beans.isDesignTime() ? null : CadastroCriptoPUEntityManager.createQuery("SELECT u FROM UsuarioEntity u");
+        usuarioEntityList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : usuarioEntityQuery1.getResultList();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUsuario = new javax.swing.JTable();
@@ -46,26 +54,20 @@ public class ListaUsuarios extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuarios Cadastrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 13))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, usuarioEntityList, tblUsuario);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
-        columnBinding.setColumnName("Id");
-        columnBinding.setColumnClass(Integer.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${login}"));
-        columnBinding.setColumnName("Login");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${senha}"));
-        columnBinding.setColumnName("Senha");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        bindingGroup.addBinding(jTableBinding);
-        jTableBinding.bind();
+        tblUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsuarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblUsuario);
-        if (tblUsuario.getColumnModel().getColumnCount() > 0) {
-            tblUsuario.getColumnModel().getColumn(0).setResizable(false);
-            tblUsuario.getColumnModel().getColumn(1).setResizable(false);
-            tblUsuario.getColumnModel().getColumn(2).setResizable(false);
-        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 31, 375, 275));
 
@@ -82,7 +84,7 @@ public class ListaUsuarios extends javax.swing.JFrame {
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblUsuario, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.id}"), txtID, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 320, 16, -1));
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 320, 20, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 411, 354));
 
@@ -91,13 +93,88 @@ public class ListaUsuarios extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    public class tabelaUsuario{
+            Integer id;
+            String login;
+            String senha;
 
+        public tabelaUsuario(Integer id, String login, String senha) {
+            this.id = id;
+            this.login = login;
+            this.senha = senha;
+        }                  
+    }
+    
+    
+    
+    public ArrayList ListarUsuario(){
+        
+        UsuarioRep usuario = new UsuarioRep();
+
+        ArrayList<tabelaUsuario> lista = new ArrayList<>();
+        
+        ArrayList<UsuarioEntity> listaUsuarios = new UsuarioRep().listar();
+
+            for (int i = 0; i < listaUsuarios.size(); i++) {
+                usuario.setId(listaUsuarios.get(i).getId());
+                usuario.setLogin(listaUsuarios.get(i).getLogin());
+                usuario.setSenha(listaUsuarios.get(i).getSenha());    
+            }
+        tabelaUsuario tbusuario = new tabelaUsuario(usuario.getId(), usuario.getLogin(), usuario.getSenha());
+        lista.add(tbusuario);
+        return lista;
+    }
+    
+    private void addTabela(){
+        DefaultTableModel model = new DefaultTableModel()
+	{
+		@Override
+		public boolean isCellEditable(final int row, final int column) {
+			return false;
+		}
+                
+	};
+        tblUsuario.setModel(model);
+        
+           
+            model.addColumn("Id");
+            model.addColumn("Login");
+            model.addColumn("Senha");
+            addLinhaTabela();
+            
+        
+        
+    }
+            
+    public void addLinhaTabela(){
+        
+        DefaultTableModel model = (DefaultTableModel) tblUsuario.getModel();
+        ArrayList<tabelaUsuario> lista = ListarUsuario();
+        
+        Object rowDaTa[] = new Object[3];
+        for (int i = 0; i < lista.size(); i++) {
+            rowDaTa[0] = lista.get(i).id;
+            rowDaTa[1] = lista.get(i).login;
+            rowDaTa[2] = lista.get(i).senha;
+            
+            model.addRow(rowDaTa);
+        }
+    }
+    
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         UsuarioRep usuRep = new UsuarioRep();
         usuRep.setId(Integer.parseInt(txtID.getText()));
         
+        DefaultTableModel model = (DefaultTableModel) tblUsuario.getModel();
+        model.removeRow(tblUsuario.getSelectedRow());
+        
         usuRep.excluir(usuRep);
     }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void tblUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuarioMouseClicked
+       txtID.setText(tblUsuario.getValueAt(tblUsuario.getSelectedRow(), 0).toString());
+       //Quando clicado na tabela, passa o valor da linha selecionada / coluna 1 (vetor 0) como id para a caixa de texto que em seguida seta como id para deletar!
+    }//GEN-LAST:event_tblUsuarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -143,7 +220,9 @@ public class ListaUsuarios extends javax.swing.JFrame {
     private javax.swing.JTable tblUsuario;
     private javax.swing.JTextField txtID;
     private java.util.List<cadastrocriptohash.model.UsuarioEntity> usuarioEntityList;
+    private java.util.List<cadastrocriptohash.model.UsuarioEntity> usuarioEntityList1;
     private javax.persistence.Query usuarioEntityQuery;
+    private javax.persistence.Query usuarioEntityQuery1;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

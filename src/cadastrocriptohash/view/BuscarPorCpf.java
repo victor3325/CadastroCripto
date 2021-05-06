@@ -124,8 +124,15 @@ public class BuscarPorCpf extends javax.swing.JFrame {
         return lista;
     }
     private void addTabela(){
-        DefaultTableModel model = (DefaultTableModel) tblPessoa.getModel();
-
+        DefaultTableModel model = new DefaultTableModel()
+	{
+		@Override
+		public boolean isCellEditable(final int row, final int column) {
+			return false;
+		}
+                
+	};
+        tblPessoa.setModel(model);
             model.addColumn("Nome");
             model.addColumn("Cpf");
             model.addColumn("Rg");
@@ -136,7 +143,7 @@ public class BuscarPorCpf extends javax.swing.JFrame {
     public void addLinhaTabela(){
         DefaultTableModel model = (DefaultTableModel) tblPessoa.getModel();
         ArrayList<tabelaPessoa> lista = ListarPessoas();
-        tblPessoa.removeAll();
+        
         Object rowDaTa[] = new Object[6];
         for (int i = 0; i < lista.size(); i++) {
             rowDaTa[0] = lista.get(i).nome;
