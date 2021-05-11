@@ -69,9 +69,18 @@ public class UsuarioRep extends UsuarioEntity{
         }
     }
     public void alterar(UsuarioEntity usuarios) {
-        
+        String senha = usuarios.getSenha();
         try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte messageDigest[] = md.digest(senha.getBytes("UTF-8"));
+                
+            StringBuilder sb = new StringBuilder();
             
+            for (byte b : messageDigest) {
+                sb.append(String.format("%02X", 0xFF & b));
+            }
+            String senhaHex = sb.toString();
+            usuarios.setSenha(senhaHex);
             pstm = connection.prepareStatement(UPDATE);
             
             pstm.setString(1, usuarios.getLogin());
@@ -88,6 +97,10 @@ public class UsuarioRep extends UsuarioEntity{
         }catch (SQLException ex) {
             System.out.println("Ocorreu um erro ao tentar alterar: " + ex.getMessage());
             JOptionPane.showMessageDialog(null,"Ocorreu um erro ao tentar Alterar: " + ex.getMessage());
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UsuarioRep.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(UsuarioRep.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public void excluir(UsuarioEntity usuarios) {
@@ -157,7 +170,7 @@ public class UsuarioRep extends UsuarioEntity{
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        boolean check = false;
+        
         UsuarioEntity usuario = new UsuarioEntity();
         String senha = Senha;    
         try {

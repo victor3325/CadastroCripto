@@ -59,8 +59,8 @@ public class Atualizar extends javax.swing.JFrame {
         txtUF = new javax.swing.JTextField();
         txtCPF = new javax.swing.JFormattedTextField();
         txtCEP = new javax.swing.JFormattedTextField();
-        txtRG = new javax.swing.JFormattedTextField();
         btnPesquisarCep = new javax.swing.JButton();
+        txtRG = new javax.swing.JTextField();
         txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -160,13 +160,6 @@ public class Atualizar extends javax.swing.JFrame {
         }
         jPanel1.add(txtCEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 106, 107, -1));
 
-        try {
-            txtRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jPanel1.add(txtRG, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 77, 107, -1));
-
         btnPesquisarCep.setText(".");
         btnPesquisarCep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +167,13 @@ public class Atualizar extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnPesquisarCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 20, 20));
+
+        txtRG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRGKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtRG, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 77, 107, -1));
 
         txtId.setEditable(false);
         txtId.setText("id");
@@ -237,7 +237,15 @@ public class Atualizar extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    public static String maxlength(String str) {
+            String valor = "";
+            if(str.length() > 11){
+	        valor = str.substring(0,11);
+                str = valor;
+            }
+	    return str;
+    } 
+    
     private void btnPesquisaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaNomeActionPerformed
         if (txtPesquisaNome.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Insira um nome para Pesquisa");
@@ -334,6 +342,10 @@ public class Atualizar extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnPesquisarCepActionPerformed
 
+    private void txtRGKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRGKeyReleased
+        txtRG.setText(maxlength(txtRG.getText()));
+    }//GEN-LAST:event_txtRGKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -399,7 +411,7 @@ public class Atualizar extends javax.swing.JFrame {
     private javax.swing.JTextField txtNumero;
     private javax.swing.JFormattedTextField txtPesquisaCPF;
     private javax.swing.JTextField txtPesquisaNome;
-    private javax.swing.JFormattedTextField txtRG;
+    private javax.swing.JTextField txtRG;
     public javax.swing.JTextField txtUF;
     // End of variables declaration//GEN-END:variables
 }

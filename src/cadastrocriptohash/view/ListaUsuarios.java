@@ -118,10 +118,11 @@ public class ListaUsuarios extends javax.swing.JFrame {
             for (int i = 0; i < listaUsuarios.size(); i++) {
                 usuario.setId(listaUsuarios.get(i).getId());
                 usuario.setLogin(listaUsuarios.get(i).getLogin());
-                usuario.setSenha(listaUsuarios.get(i).getSenha());    
+                usuario.setSenha(listaUsuarios.get(i).getSenha());   
+                tabelaUsuario tbusuario = new tabelaUsuario(usuario.getId(), usuario.getLogin(), usuario.getSenha());
+                lista.add(tbusuario);
             }
-        tabelaUsuario tbusuario = new tabelaUsuario(usuario.getId(), usuario.getLogin(), usuario.getSenha());
-        lista.add(tbusuario);
+        
         return lista;
     }
     
@@ -140,6 +141,8 @@ public class ListaUsuarios extends javax.swing.JFrame {
             model.addColumn("Id");
             model.addColumn("Login");
             model.addColumn("Senha");
+            ArrayList<UsuarioEntity> listaUsuarios = new UsuarioRep().listar();
+
             addLinhaTabela();
             
         

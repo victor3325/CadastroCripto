@@ -6,7 +6,6 @@
 package cadastrocriptohash;
 
 import cadastrocriptohash.view.Login;
-import cadastrocriptohash.view.Navegacao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
