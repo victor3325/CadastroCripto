@@ -68,6 +68,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -150,7 +151,7 @@ public class Cadastro extends javax.swing.JFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, -1, -1));
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 230, -1));
 
         pack();
         setLocationRelativeTo(null);

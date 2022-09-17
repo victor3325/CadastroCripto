@@ -5,6 +5,7 @@
  */
 package cadastrocriptohash;
 
+import cadastrocriptohash.util.ConexaoBanco;
 import cadastrocriptohash.view.Login;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,9 +20,10 @@ public class InicioApp {
     /**
      * @param args the command line arguments
      */
-        static  EntityManagerFactory  emf
-                 = Persistence.createEntityManagerFactory("CadastroCriptoPU");
+        static  EntityManagerFactory  emf  = Persistence.createEntityManagerFactory("CadastroCriptoPU");
         static  EntityManager em = emf.createEntityManager();
+        
+        
     public static void main(String[] args) {
         new Login().setVisible(true);
         

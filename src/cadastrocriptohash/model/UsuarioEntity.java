@@ -26,7 +26,7 @@ import javax.persistence.Transient;
 public class UsuarioEntity implements Serializable{
 
     @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport changeSupport;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +36,10 @@ public class UsuarioEntity implements Serializable{
     private String login;
     @Column
     private String senha;
+
+    public UsuarioEntity() {
+        this.changeSupport = new PropertyChangeSupport(this);
+    }
 
     public Integer getId() {
         return id;

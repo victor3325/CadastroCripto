@@ -34,9 +34,6 @@ public class BuscarPorNome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        CadastroCriptoPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("CadastroCriptoPU").createEntityManager();
-        pessoaEntityQuery = java.beans.Beans.isDesignTime() ? null : CadastroCriptoPUEntityManager.createQuery("SELECT p FROM PessoaEntity p");
-        pessoaEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : pessoaEntityQuery.getResultList();
         jPanel1 = new javax.swing.JPanel();
         txtPesquisaNome = new javax.swing.JTextField();
         btnPesquisaNome = new javax.swing.JButton();
@@ -45,6 +42,8 @@ public class BuscarPorNome extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Nome");
+        setMinimumSize(new java.awt.Dimension(417, 357));
+        setName("Pesquisarnome"); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnPesquisaNome.setText("Pesquisar Nome");
@@ -91,7 +90,7 @@ public class BuscarPorNome extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 399, 342));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 399, 342));
 
         pack();
         setLocationRelativeTo(null);
@@ -207,12 +206,9 @@ public class BuscarPorNome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.persistence.EntityManager CadastroCriptoPUEntityManager;
     private javax.swing.JButton btnPesquisaNome;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.util.List<cadastrocriptohash.model.PessoaEntity> pessoaEntityList;
-    private javax.persistence.Query pessoaEntityQuery;
     private javax.swing.JTable tblPessoa;
     private javax.swing.JTextField txtPesquisaNome;
     // End of variables declaration//GEN-END:variables

@@ -15,10 +15,10 @@ import java.sql.SQLException;
  */
 public class ConexaoBanco {
   
-    private static final String URL_MYSQL = "jdbc:mysql://localhost:3306/mydb";
-    private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
+    private static final String URL_MYSQL = "jdbc:mysql://localhost:3307/mydb";
+    private static final String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
     private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String PASS = "12345678";
     
     public static Connection conectarBanco() {
         System.out.println("iniciando conexão ...");

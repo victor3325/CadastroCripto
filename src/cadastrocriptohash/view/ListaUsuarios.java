@@ -34,13 +34,7 @@ public class ListaUsuarios extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        CadastroCriptoPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("CadastroCriptoPU").createEntityManager();
-        usuarioEntityQuery = java.beans.Beans.isDesignTime() ? null : CadastroCriptoPUEntityManager.createQuery("SELECT u FROM UsuarioEntity u");
-        usuarioEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : usuarioEntityQuery.getResultList();
-        usuarioEntityQuery1 = java.beans.Beans.isDesignTime() ? null : CadastroCriptoPUEntityManager.createQuery("SELECT u FROM UsuarioEntity u");
-        usuarioEntityList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : usuarioEntityQuery1.getResultList();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUsuario = new javax.swing.JTable();
@@ -49,7 +43,7 @@ public class ListaUsuarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista Usuarios");
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setMinimumSize(new java.awt.Dimension(443, 420));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuarios Cadastrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 13))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -80,15 +74,9 @@ public class ListaUsuarios extends javax.swing.JFrame {
         jPanel1.add(btnDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 319, -1, -1));
 
         txtID.setEditable(false);
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblUsuario, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.id}"), txtID, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
-
         jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 320, 20, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 411, 354));
-
-        bindingGroup.bind();
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
@@ -166,7 +154,7 @@ public class ListaUsuarios extends javax.swing.JFrame {
     
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         UsuarioRep usuRep = new UsuarioRep();
-        usuRep.setId(Integer.parseInt(txtID.getText()));
+        usuRep.setId(Integer.valueOf(txtID.getText()));
         
         DefaultTableModel model = (DefaultTableModel) tblUsuario.getModel();
         model.removeRow(tblUsuario.getSelectedRow());
@@ -216,16 +204,10 @@ public class ListaUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.persistence.EntityManager CadastroCriptoPUEntityManager;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblUsuario;
     private javax.swing.JTextField txtID;
-    private java.util.List<cadastrocriptohash.model.UsuarioEntity> usuarioEntityList;
-    private java.util.List<cadastrocriptohash.model.UsuarioEntity> usuarioEntityList1;
-    private javax.persistence.Query usuarioEntityQuery;
-    private javax.persistence.Query usuarioEntityQuery1;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

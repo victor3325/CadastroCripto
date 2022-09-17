@@ -32,7 +32,7 @@ public class UsuarioRep extends UsuarioEntity{
 
     private static final String UPDATE = "update usuarios set login = ?, senha  = ? where id = ?";
     
-    private Connection connection = ConexaoBanco.conectarBanco();
+    private final Connection connection = ConexaoBanco.conectarBanco();
     private PreparedStatement pstm;
     
     public void adicionar(UsuarioEntity usuarios) {
@@ -62,9 +62,7 @@ public class UsuarioRep extends UsuarioEntity{
         }catch (SQLException ex) {
             System.out.println("Ocorreu um erro ao tentar salvar: " + ex.getMessage());
             JOptionPane.showMessageDialog(null,"Ocorreu um erro ao tentar cadastrar o usuario: " + ex.getMessage());
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(UsuarioRep.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
             Logger.getLogger(UsuarioRep.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -97,9 +95,7 @@ public class UsuarioRep extends UsuarioEntity{
         }catch (SQLException ex) {
             System.out.println("Ocorreu um erro ao tentar alterar: " + ex.getMessage());
             JOptionPane.showMessageDialog(null,"Ocorreu um erro ao tentar Alterar: " + ex.getMessage());
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(UsuarioRep.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
             Logger.getLogger(UsuarioRep.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -158,7 +154,7 @@ public class UsuarioRep extends UsuarioEntity{
                 lista.add(u);
             }
              
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.out.println("Ocorreu um erro ao tentar buscar o usuario no banco: " + ex.getMessage());
             JOptionPane.showMessageDialog(null,"Ocorreu um erro ao tentar buscar o usuario: " + ex.getMessage());
         }
@@ -169,7 +165,6 @@ public class UsuarioRep extends UsuarioEntity{
     
         PreparedStatement stmt = null;
         ResultSet rs = null;
-
         
         UsuarioEntity usuario = new UsuarioEntity();
         String senha = Senha;    
@@ -200,9 +195,7 @@ public class UsuarioRep extends UsuarioEntity{
         } catch (SQLException ex) {
             System.out.println("Ocorreu um erro ao tentar encontrar o usuario: " + ex.getMessage());
             JOptionPane.showMessageDialog(null,"Ocorreu um erro ao tentar buscar o usuario: " + ex.getMessage());
-        } catch (NoSuchAlgorithmException ex) { 
-            Logger.getLogger(UsuarioRep.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
             Logger.getLogger(UsuarioRep.class.getName()).log(Level.SEVERE, null, ex);
         }
         return usuario;

@@ -27,7 +27,7 @@ import javax.persistence.Transient;
 public class PessoaEntity implements Serializable{
 
     @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport changeSupport;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,6 +53,10 @@ public class PessoaEntity implements Serializable{
     String municipio;
     @Column(name = "UF")
     String uf;
+
+    public PessoaEntity() {
+        this.changeSupport = new PropertyChangeSupport(this);
+    }
 
     public Integer getId() {
         return id;

@@ -190,13 +190,13 @@ public class Deletar extends javax.swing.JFrame {
         });
         jPanel1.add(txtRG, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 77, 107, -1));
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 115, -1, -1));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 115, 250, -1));
 
         txtId.setEditable(false);
         txtId.setText("Id");
         jPanel2.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 31, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 268, 449));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 280, 450));
 
         pack();
         setLocationRelativeTo(null);

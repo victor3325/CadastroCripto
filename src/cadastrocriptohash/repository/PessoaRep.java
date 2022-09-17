@@ -27,7 +27,7 @@ public class PessoaRep extends PessoaEntity {
 
     private static final String UPDATE = "update pessoas set nome = ?, cpf = ?, rg = ?, cep = ?, endereco = ?, numero = ?, bairro = ?, complemento = ?, municipio = ?, uf  = ? where id = ?";
     
-    private Connection connection = ConexaoBanco.conectarBanco();
+    private final Connection connection = ConexaoBanco.conectarBanco();
     private PreparedStatement pstm;
     
     public void adicionar(PessoaEntity pessoas) {
@@ -182,7 +182,7 @@ public class PessoaRep extends PessoaEntity {
                 lista.add(p);
             }
              
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.out.println("Ocorreu um erro ao tentar buscar esta pessoa no banco: " + ex.getMessage());
             JOptionPane.showMessageDialog(null,"Ocorreu um erro ao tentar buscar esta pessoa no banco: " + ex.getMessage());
         }
@@ -207,7 +207,7 @@ public class PessoaRep extends PessoaEntity {
                 lista.add(p);
             }
              
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.out.println("Ocorreu um erro ao tentar buscar Este CPF no banco: " + ex.getMessage());
             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar buscar Este CPF no banco: " + ex.getMessage());
         }
@@ -237,7 +237,7 @@ public class PessoaRep extends PessoaEntity {
                 lista.add(p);
             }
              
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.out.println("Ocorreu um erro ao tentar buscar Este CPF no banco: " + ex.getMessage());
             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar buscar Este CPF no banco: " + ex.getMessage());
         }

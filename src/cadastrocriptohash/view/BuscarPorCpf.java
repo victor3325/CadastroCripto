@@ -34,9 +34,6 @@ public class BuscarPorCpf extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        CadastroCriptoPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("CadastroCriptoPU").createEntityManager();
-        pessoaEntityQuery = java.beans.Beans.isDesignTime() ? null : CadastroCriptoPUEntityManager.createQuery("SELECT p FROM PessoaEntity p");
-        pessoaEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : pessoaEntityQuery.getResultList();
         jPanel1 = new javax.swing.JPanel();
         txtPesquisaCpf = new javax.swing.JTextField();
         btnPesquisaCpf = new javax.swing.JButton();
@@ -45,6 +42,7 @@ public class BuscarPorCpf extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Busca CPF");
+        setName("Pesquisadecpf"); // NOI18N
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -191,12 +189,9 @@ public class BuscarPorCpf extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.persistence.EntityManager CadastroCriptoPUEntityManager;
     private javax.swing.JButton btnPesquisaCpf;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.util.List<cadastrocriptohash.model.PessoaEntity> pessoaEntityList;
-    private javax.persistence.Query pessoaEntityQuery;
     private javax.swing.JTable tblPessoa;
     private javax.swing.JTextField txtPesquisaCpf;
     // End of variables declaration//GEN-END:variables

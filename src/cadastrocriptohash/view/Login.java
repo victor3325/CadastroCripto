@@ -7,6 +7,7 @@ package cadastrocriptohash.view;
 
 import cadastrocriptohash.model.UsuarioEntity;
 import cadastrocriptohash.repository.UsuarioRep;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,8 +42,9 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setMinimumSize(new java.awt.Dimension(261, 200));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setSize(new java.awt.Dimension(275, 175));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Insira login e senha para entrar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,15 +57,36 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(txtLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 32, 117, -1));
         jPanel1.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 67, 117, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 241, 111));
-
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 131, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(btnEntrar)))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(btnEntrar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -72,17 +95,26 @@ public class Login extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         
         UsuarioRep usurep = new UsuarioRep();
-                
-        UsuarioEntity usuario = usurep.checarLogin(txtLogin.getText(), txtSenha.getText());
-               
-        if (usuario.getId() != null || (txtLogin.getText().equals("admin") && txtSenha.getText().equals("admin"))) {
-            JOptionPane.showMessageDialog(this, "Login Efetuado");
-            Navegacao nav = new Navegacao();
-            nav.setVisible(true);
+        
+        
+        try {
+            UsuarioEntity usuario = usurep.checarLogin(txtLogin.getText(), txtSenha.getText());
+            
+            if (usuario.getId() != null || (txtLogin.getText().equals("admin") && txtSenha.getText().equals("admin"))) {
+                JOptionPane.showMessageDialog(this, "Login Efetuado");
+                Navegacao nav = new Navegacao();
+                nav.setVisible(true);
+                dispose();            
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Credenciais inválidas!");
+            }
+        } catch (HeadlessException e) {
             dispose();
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Credenciais inválidas!");
         }
+     
+        
+               
+        
         
     }//GEN-LAST:event_btnEntrarActionPerformed
 
